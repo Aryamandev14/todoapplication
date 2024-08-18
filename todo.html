@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<script>
+    let globalid=1;
+    function markasdone(tid){
+        const parent=document.getElementById(tid);
+        parent.children[2].innerHTML="done!";
+    }
+    function createchild(title,description,id){
+        const child=document.createElement("div");
+
+
+        const firstgrandchild=document.createElement("div");
+        const secondgrandchild=document.createElement("div");
+        const thirdgrandchild=document.createElement("button");
+
+
+        firstgrandchild.innerHTML=title;
+        secondgrandchild.innerHTML=description;
+        thirdgrandchild.innerHTML="Mark as done";
+        thirdgrandchild.setAttribute("onClick",`markasdone('${id}')`);
+
+
+        child.appendChild(firstgrandchild);
+        child.appendChild(secondgrandchild);
+        child.appendChild(thirdgrandchild);
+        child.setAttribute("id",id);
+
+
+        return child;
+    }
+    function addtodo(){
+        const title=document.getElementById("title").value;
+        const description=document.getElementById("description").value;
+        const parent=document.getElementById("todos");
+        parent.appendChild(createchild(title,description,globalid++));
+    }
+</script>
+<body>
+    <input id="title" type="text" placeholder="title"> <br><br>
+
+    <input id="description" type="text" placeholder="description">
+    <br><br>
+    <button onclick="addtodo()">Add Todo</button>
+</div>
+<div id="todos">
+
+</div>
+</body>
+</html>
